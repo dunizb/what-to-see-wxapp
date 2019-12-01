@@ -21,7 +21,7 @@ Page({
   getList(event) {
     let callFunction = 'tvHotList'
     if(event) {
-      callFunction = event.currentTarget.dataset.type
+      callFunction = event.currentTarget.id
     }
     this.setData({
       selectedHot: callFunction === 'tvHotList',
@@ -41,6 +41,11 @@ Page({
       })
     }).catch(err => {
       console.log(err)
+      wx.showToast({
+        title: '出错了',
+        icon: 'none'
+      })
+      wx.hideLoading()
     })
   },
 

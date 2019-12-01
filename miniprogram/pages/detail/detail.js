@@ -37,6 +37,10 @@ Page({
       })
     }).catch(err => {
       console.log(err)
+      wx.showToast({
+        title: '出错了',
+      })
+      wx.hideLoading()
     })
   }, 
   updateNavigationBar(title) {
