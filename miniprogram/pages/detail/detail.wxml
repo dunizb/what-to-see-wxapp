@@ -1,34 +1,36 @@
 <view class="page">
-  <view class="header">
-    <view class="cover-img">
-      <image src="{{cover}}" class="cover" mode="scaleToFill"></image>
-      <view class="rate" wx:if="{{nfo.rate}}">{{ info.rate }}</view>
+  <van-skeleton title avatar row="10" avatar-shape="square" loading="{{loading}}">
+    <view class="header">
+      <view class="cover-img">
+        <image src="{{cover}}" class="cover" mode="scaleToFill"></image>
+        <view class="rate" wx:if="{{info.rate}}">{{ info.rate }}</view>
+      </view>
+      <view class="infos">
+        <view class="title">{{info.title}}</view>
+        <view class="tag">类型：{{wxs.convert(info.types)}}</view>
+        <view class="tag">导演：{{wxs.convert(info.actors)}}</view>
+        <view class="tag">演员：{{wxs.convert(info.directors)}}</view>
+        <view class="tag">国家：{{info.region}}</view>
+        <view class="tag">时长：{{info.duration}}</view>
+        <view class="tag">年份：{{info.release_year}}</view>
+      </view>
     </view>
-    <view class="infos">
-      <view class="title">{{info.title}}</view>
-      <view class="tag">类型：{{wxs.convert(info.types)}}</view>
-      <view class="tag">导演：{{wxs.convert(info.actors)}}</view>
-      <view class="tag">演员：{{wxs.convert(info.directors)}}</view>
-      <view class="tag">国家：{{info.region}}</view>
-      <view class="tag">时长：{{info.duration}}</view>
-      <view class="tag">年份：{{info.release_year}}</view>
+    <view class="plot" wx:if="{{info.plot}}">
+      <view class="plot-title">剧情简介</view>
+      <view class="plot-content">{{info.plot}}</view>
     </view>
-  </view>
-  <view class="plot" wx:if="{{info.plot}}">
-    <view class="plot-title">剧情简介</view>
-    <view class="plot-content">{{info.plot}}</view>
-  </view>
-  <view class="plot" wx:if="{{info.short_comment}}">
-    <view class="plot-title">短评</view>
-    <view class="plot-content">
-      <text class="content">{{info.short_comment.content}}</text>
-      <text class="author">--{{info.short_comment.author}}</text>
+    <view class="plot" wx:if="{{info.short_comment}}">
+      <view class="plot-title">短评</view>
+      <view class="plot-content">
+        <text class="content">{{info.short_comment.content}}</text>
+        <text class="author">--{{info.short_comment.author}}</text>
+      </view>
     </view>
-  </view>
 
-  <view class="back-button" bind:tap="onBack" wx:if="{{!isLoading}}">
-    <van-button plain hairline block round custom-style="width:640rpx;background:rgb(248, 248, 249);box-shadow:0 0 18px #000;">返 回</van-button>
-  </view>
+    <view class="back-button" bind:tap="onBack">
+      <van-button plain hairline block round custom-style="width:640rpx;background:rgb(248, 248, 249);box-shadow:0 0 18px #000;">返 回</van-button>
+    </view>
+  </van-skeleton>
 </view>
 
 <wxs module="wxs">

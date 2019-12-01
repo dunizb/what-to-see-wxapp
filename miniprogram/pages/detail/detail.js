@@ -7,7 +7,7 @@ Page({
   data: {
     info: null,
     cover: '',
-    isLoading: true
+    loading: true
   },
 
   /**
@@ -30,7 +30,7 @@ Page({
       const result = res.result
       this.setData({
         info: result.subject,
-        isLoading: false
+        loading: false
       }, () => {
         this.updateNavigationBar(result.subject.title)
         wx.hideLoading()
