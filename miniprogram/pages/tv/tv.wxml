@@ -1,8 +1,8 @@
 <view class="container">
   <view class="category">
-    <view class="cate-button hot {{selectedHot?'selected':''}}" bind:tap="getHot">最新热门</view>
-    <view class="cate-button zongyi {{selectedZongyi?'selected':''}}" bind:tap="getZongyYi">综艺</view>
-    <view class="cate-button jilu {{selectedJiLu?'selected':''}}" bind:tap="getJiLu">纪录片</view>
+    <view class="cate-button hot {{selectedHot?'selected':''}}" id="tvHotList" bind:tap="getList">最新热门</view>
+    <view class="cate-button zongyi {{selectedZongYi?'selected':''}}" id="tvZongYiList" bind:tap="getList">综艺</view>
+    <view class="cate-button jilu {{selectedJiLu?'selected':''}}" id="tvJiLuList" bind:tap="getList">纪录片</view>
   </view>
 
   <view class="list-conrainer" style="padding-top:100rpx">

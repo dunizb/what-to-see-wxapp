@@ -11,33 +11,26 @@ Page({
   },
   ...common.methods,
 
-  getHot() {
-    this.setData({
-      selectedHot: true,
-      selectedNew: false
-    })
-    this.getHotList()
-  },
-  getNew() {
-    this.setData({
-      selectedHot: false,
-      selectedNew: true
-    })
-    this.getNewList()
-  },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getHotList()
+    this.getList()
   },
-  getHotList() {
+  getList(event) {
+    let callFunction = 'movielist'
+    if(event) {
+      callFunction = event.currentTarget.id
+    }
+    this.setData({
+      selectedHot: callFunction === 'movielist',
+      selectedNew: callFunction === 'movieNewList'
+    })
     wx.showLoading({ title: '加载中' })
     wx.cloud.callFunction({
-      name: 'movielist'
+      name: callFunction
     }).then(res => {
-      console.log('res', res.result)
+      // console.log('res', res.result)
       const result = res.result
       this.setData({ 
         dataList: result.subjects 
@@ -48,23 +41,6 @@ Page({
       console.log(err)
     })
   },
-  getNewList() {
-    wx.showLoading({ title: '加载中' })
-    wx.cloud.callFunction({
-      name: 'movieNewList'
-    }).then(res => {
-      console.log('res', res.result)
-      const result = res.result
-      this.setData({ 
-        dataList: result.subjects 
-      }, () => {
-        wx.hideLoading()
-      })
-    }).catch(err => {
-      console.log(err)
-    })
-  },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

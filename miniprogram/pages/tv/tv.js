@@ -6,81 +6,33 @@ Page({
    */
   data: {
     selectedHot: true,
-    selectedZongyi: false,
+    selectedZongYi: false,
     selectedJiLu: false,
     dataList: []
   },
   ...common.methods,
 
-  getHot() {
-    this.setData({
-      selectedHot: true,
-      selectedZongyi: false,
-      selectedJiLu: false
-    })
-    this.getHotList()
-  },
-  getZongyYi() {
-    this.setData({
-      selectedHot: false,
-      selectedJiLu: false,
-      selectedZongyi: true
-    })
-    this.getZongyYiList()
-  },
-  getJiLu() {
-    this.setData({
-      selectedHot: false,
-      selectedJiLu: true,
-      selectedZongyi: false
-    })
-    this.getJiLuList()
-  },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getHotList()
+    this.getList()
   },
-  getHotList() {
-    wx.showLoading({ title: '加载中' })
-    wx.cloud.callFunction({
-      name: 'tvHotList'
-    }).then(res => {
-      console.log('res', res.result)
-      const result = res.result
-      this.setData({
-        dataList: result.subjects
-      }, () => {
-        wx.hideLoading()
-      })
-    }).catch(err => {
-      console.log(err)
+  getList(event) {
+    let callFunction = 'tvHotList'
+    if(event) {
+      callFunction = event.currentTarget.dataset.type
+    }
+    this.setData({
+      selectedHot: callFunction === 'tvHotList',
+      selectedJiLu: callFunction === 'tvJiLuList',
+      selectedZongYi: callFunction === 'tvZongYiList'
     })
-  },
-  getZongyYiList() {
     wx.showLoading({ title: '加载中' })
     wx.cloud.callFunction({
-      name: 'tvZongYiList'
+      name: callFunction
     }).then(res => {
-      console.log('res', res.result)
-      const result = res.result
-      this.setData({
-        dataList: result.subjects
-      }, () => {
-        wx.hideLoading()
-      })
-    }).catch(err => {
-      console.log(err)
-    })
-  },
-  getJiLuList() {
-    wx.showLoading({ title: '加载中' })
-    wx.cloud.callFunction({
-      name: 'tvJiLuList'
-    }).then(res => {
-      console.log('res', res.result)
+      // console.log('res', res.result)
       const result = res.result
       this.setData({
         dataList: result.subjects

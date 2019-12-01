@@ -1,7 +1,7 @@
 <view class="container">
   <view class="category">
-    <view class="cate-button hot {{selectedHot?'selected':''}}" bind:tap="getHot">最近热门 Top50</view>
-    <view class="cate-button new {{selectedNew?'selected':''}}" bind:tap="getNew">最新 Top50</view>
+    <view class="cate-button hot {{selectedHot?'selected':''}}" id="movielist" bind:tap="getList">最近热门 Top50</view>
+    <view class="cate-button new {{selectedNew?'selected':''}}" id="movieNewList" bind:tap="getList">最新 Top50</view>
   </view>
 
   <view class="list-conrainer" style="padding-top:100rpx">
