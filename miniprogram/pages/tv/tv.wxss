@@ -1,0 +1,27 @@
+.category .cate-button {
+  background: #fff;
+  color: #1296db;
+  padding: 8rpx 0;
+  text-align: center;
+  min-width: 200rpx;
+  border: 1rpx solid #1296db;
+}
+.category .cate-button.hot {
+  border-radius: 6rpx 0 0 6rpx;
+}
+.category .cate-button.zongyi {
+  border-left-width: 0;
+  border-right-width: 0;
+}
+.category .cate-button.jilu {
+  border-radius: 0 6rpx 6rpx 0;
+}
+.category .cate-button.selected {
+  background: #1296db;
+  color: #fff;
+}
+
+
+.list-item .score {
+  color: #e09015;
+}

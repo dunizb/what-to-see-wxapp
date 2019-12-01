@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "van-tag": "@vant/weapp/tag"
+  },
+  "navigationBarBackgroundColor": "#07c160",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "好看电影",
+  "backgroundColor": "#000000",
+  "backgroundTextStyle": "light"
+}

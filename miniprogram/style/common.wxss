@@ -1,0 +1,36 @@
+.container {
+  padding: 0 20rpx 20rpx 20rpx;
+}
+.category {
+  display: flex;
+  justify-content: center;
+  position:fixed;
+  z-index: 10;
+  align-items: center;
+  top: 20rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 28px #ccc;
+}
+
+.list-conrainer {
+  display:flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.list-item {
+  text-align: center; 
+  width: 233rpx;
+  padding: 2rpx;
+}
+.list-item .cover {
+  width: 230rpx;
+  height: 324rpx;
+}
+.list-item .title {
+  margin: 10rpx 0 0;
+  height: 88rpx;
+  overflow: hidden;
+  font-size: 28rpx;
+  padding: 0 4rpx;
+}

@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "van-button": "@vant/weapp/button"
+  },
+  "backgroundColor": "#000000cc",
+  "backgroundTextStyle": "light"
+}

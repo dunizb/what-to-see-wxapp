@@ -1,0 +1,106 @@
+page {
+  background-color: rgba(0,0,0,.8);
+  color: #fff;
+  font-size: 28rpx;
+  padding-bottom: 140rpx;
+}
+.page {
+  padding: 40rpx 30rpx;
+}
+.header {
+  display: flex;
+}
+.cover-img {
+  margin-right: 20rpx;
+  position: relative;
+}
+.cover-img .cover {
+  width: 230rpx;
+  height: 324rpx;
+}
+.cover-img .rate {
+  position: absolute;
+  top: -10rpx;
+  right: -10rpx;
+  background-color: #d81e06;
+  font-size: 20rpx;
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 50%;
+  padding: 4rpx;
+}
+.infos{
+  width: 63%;
+}
+.infos .title {
+  display: block;
+  width: 95%;
+  font-size: 34rpx;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-weight: 700;
+  margin-bottom: 10rpx;
+}
+.infos .tag {
+  font-size: 28rpx;
+  min-height: 40rpx;
+  display: -webkit-box;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  line-height: 46rpx;
+}
+.plot {
+  margin-top: 40rpx;
+}
+.plot .plot-title{
+  text-align: center;
+  font-size: 34rpx;
+  margin: 20rpx 0;
+  position: relative;
+  background-color: rgba(0,0,0,.5);
+  padding: 16rpx 0;
+}
+.plot .plot-content {
+  line-height: 44rpx;
+  /* display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  word-break: break-all;
+  overflow: hidden; */
+}
+.plot .plot-content .author {
+  color: #ccc;
+}
+/* .plot .plot-title::after{
+  content: '';
+  position: absolute;
+  right: 16rpx;
+  top: 24rpx;
+  width: 35%;
+  height: 1rpx;
+  background-color: #ccc;
+}
+.plot .plot-title::before{
+  content: '';
+  position: absolute;
+  left: 16rpx;
+  top: 24rpx;
+  width: 35%;
+  height: 1rpx;
+  background-color: #ccc;
+} */
+.plot .plot-content{
+
+}
+.back-button {
+  position: fixed;
+  bottom: 40rpx;
+  left: 50%;
+  transform: translateX(-50%);
+}

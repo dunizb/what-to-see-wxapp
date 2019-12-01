@@ -1,0 +1,27 @@
+{
+  "pages": [
+    "pages/movie/movie",
+    "pages/tv/tv",
+    "pages/detail/detail"
+  ],
+  "tabBar": {
+    "color": "#000000",
+    "selectedColor": "#d81e06",
+    "list": [
+      {
+        "pagePath": "pages/movie/movie",
+        "text": "电影",
+        "iconPath": "images/movie.png",
+        "selectedIconPath": "images/movie-selected.png"
+      },
+      {
+        "pagePath": "pages/tv/tv",
+        "text": "电视",
+        "iconPath": "images/tv.png",
+        "selectedIconPath": "images/tv-selected.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}

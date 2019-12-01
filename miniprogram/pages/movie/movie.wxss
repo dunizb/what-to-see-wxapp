@@ -1,0 +1,21 @@
+.category .cate-button {
+  background: #fff;
+  color: #07c160;
+  padding: 8rpx 0;
+  text-align: center;
+  min-width: 300rpx;
+  border: 1rpx solid #07c160;
+}
+.category .cate-button.hot {
+  border-radius: 6rpx 0 0 6rpx;
+}
+.category .cate-button.new {
+  border-radius: 0 6rpx 6rpx 0;
+}
+.category .cate-button.selected {
+  background: #07c160;
+  color: #fff;
+}
+.list-item .score {
+  color: #e09015;
+}
