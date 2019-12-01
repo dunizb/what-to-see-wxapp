@@ -4,24 +4,37 @@ page {
   font-size: 28rpx;
   padding-bottom: 140rpx;
 }
-.page {
-  padding: 40rpx 30rpx;
+.page-pd {
+  padding: 40rpx 40rpx;
 }
 .header {
   display: flex;
-}
-.cover-img {
-  margin-right: 20rpx;
+  padding: 40rpx;
+  background-repeat: no-repeat;
+  background-size:cover;
   position: relative;
 }
-.cover-img .cover {
+.header .mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,.5);
+}
+.header .cover-img {
+  margin-right: 20rpx;
+  position: relative;
+  z-index: 10;
+}
+.header .cover-img .cover {
   width: 230rpx;
   height: 324rpx;
 }
-.cover-img .rate {
+.header .cover-img .rate {
   position: absolute;
-  top: -10rpx;
-  right: -10rpx;
+  top: -16rpx;
+  right: -16rpx;
   background-color: #d81e06;
   font-size: 20rpx;
   width: 30rpx;
@@ -29,10 +42,11 @@ page {
   border-radius: 50%;
   padding: 4rpx;
 }
-.infos{
+.header .infos{
   width: 63%;
+  z-index: 10;
 }
-.infos .title {
+.header .infos .title {
   display: block;
   width: 95%;
   font-size: 34rpx;
@@ -54,18 +68,11 @@ page {
   line-height: 46rpx;
 }
 .plot {
-  margin-top: 40rpx;
-}
-.plot .plot-title{
-  text-align: center;
-  font-size: 34rpx;
-  margin: 20rpx 0;
-  position: relative;
-  background-color: rgba(0,0,0,.5);
-  padding: 16rpx 0;
+  padding: 0 40rpx;
 }
 .plot .plot-content {
   line-height: 44rpx;
+  margin-bottom: 40rpx;
   /* display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
@@ -76,6 +83,7 @@ page {
 }
 .plot .plot-content .author {
   color: #ccc;
+  font-weight: bold;
 }
 /* .plot .plot-title::after{
   content: '';

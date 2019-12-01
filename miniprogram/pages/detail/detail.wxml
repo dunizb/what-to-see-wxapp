@@ -1,10 +1,11 @@
-<view class="page">
-  <van-skeleton title avatar row="10" avatar-shape="square" loading="{{loading}}">
-    <view class="header">
+<view class="page" style="padding-top:{{loading?'40rpx':'0'}}">
+  <van-skeleton title avatar avatar-size="128px" row="{{4}}" avatar-shape="square" loading="{{loading}}" style="margin-top:40rpx;">
+    <view class="header" style="background-image:url({{cover}})">
       <view class="cover-img">
         <image src="{{cover}}" class="cover" mode="scaleToFill"></image>
         <view class="rate" wx:if="{{info.rate}}">{{ info.rate }}</view>
       </view>
+      <view class="mask"></view>
       <view class="infos">
         <view class="title">{{info.title}}</view>
         <view class="tag">类型：{{wxs.convert(info.types)}}</view>
@@ -16,11 +17,11 @@
       </view>
     </view>
     <view class="plot" wx:if="{{info.plot}}">
-      <view class="plot-title">剧情简介</view>
+      <van-divider dashed contentPosition="center" textColor="#fff" borderColor="#ccc" fontSize="18">剧情简介</van-divider>
       <view class="plot-content">{{info.plot}}</view>
     </view>
     <view class="plot" wx:if="{{info.short_comment}}">
-      <view class="plot-title">短评</view>
+      <van-divider dashed contentPosition="center" textColor="#fff" borderColor="#ccc" fontSize="18">短评</van-divider>
       <view class="plot-content">
         <text class="content">{{info.short_comment.content}}</text>
         <text class="author">--{{info.short_comment.author}}</text>
