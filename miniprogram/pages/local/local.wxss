@@ -50,3 +50,13 @@
   color: #ff5200;
   margin-top: 20rpx;
 }
+
+.city-null {
+  text-align: center;
+  width: 480rpx;
+  margin: 100rpx auto;
+  color: #8a8a8a;
+}
+.city-null .image-404{
+  width: 480rpx;
+}

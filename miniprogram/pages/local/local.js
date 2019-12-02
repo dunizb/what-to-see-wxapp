@@ -14,6 +14,7 @@ Page({
     showPagerLoaidng: false,
     city: '上海',
     category: '音乐会',
+    cityNull: false,
     pager: {
       pageSize: 30,
       currPage: 1,
@@ -135,8 +136,16 @@ Page({
       this.data.pager.totalPage = result.totalPage
       let dataList = this.data.dataList || []
       dataList = dataList.concat(result.list)
+      if (dataList.length > 0) {
+        dataList = dataList.concat(result.list)
+      } else {
+        this.data.cityNull = true
+      }
       this.setData({
-        dataList
+        dataList,
+        city: this.data.city,
+        category: this.data.category,
+        cityNull: this.data.cityNull
       }, () => {
         wx.hideLoading()
         wx.setStorage({
@@ -144,6 +153,7 @@ Page({
           data: dataList,
         })
       })
+      
       wx.hideLoading()
     }).catch(err => {
       console.log(err)

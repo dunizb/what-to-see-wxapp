@@ -6,7 +6,7 @@
   </view>
 
   <view class="list-conrainer" style="padding-top:100rpx">
-    <view class="item-wrapper" wx:for="{{dataList}}" wx:key="id" id="{{item.id}}" bind:tap="getDetail">
+    <view class="item-wrapper" wx:if="{{dataList.length > 0}}" wx:for="{{dataList}}" wx:key="id" id="{{item.id}}" bind:tap="getDetail">
       <view class="cover-wrapper">
         <image class="cover" src="{{item.verticalPic}}" mode="aspectFill" lazy-load="{{true}}"></image>
       </view>
@@ -22,6 +22,10 @@
         </view>
         <view class="price">￥{{item.price_str}}</view>
       </view>
+    </view>
+    <view class="city-null" wx:if="{{dataList.length == 0}}">
+      <image src="../../images/404.png" class="image-404"></image>
+      <view>抱歉！{{city}}还没有{{category}}活动...</view>
     </view>
   </view>
   <view class="page-loading-tip">
