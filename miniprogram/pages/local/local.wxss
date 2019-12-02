@@ -9,7 +9,7 @@
 .category .cate-button.music-concert {
   border-radius: 6rpx 0 0 6rpx;
 }
-.category .cate-button.music-festival {
+.category .cate-button.sings {
   border-left-width: 0;
   border-right-width: 0;
 }
@@ -24,11 +24,29 @@
 .item-wrapper {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+.item-wrapper .cover-wrapper{
+  margin-right: 20rpx;
 }
 .item-wrapper .cover-wrapper .cover{
-  width: 280rpx;
-  height: 380rpx;
+  width: 270rpx;
+  height: 370rpx;
 }
-.item-wrapper .title {
+.item-wrapper .infos {
   text-align: left;
+}
+.item-wrapper .infos .other{
+  font-size: 28rpx;
+  color: #666;
+}
+.item-wrapper .infos .title-elli{
+  margin-bottom: 40rpx;
+  color: #111;
+  font-weight: 700;
+  font-size: 32rpx;
+}
+.item-wrapper .infos .price{
+  color: #ff5200;
+  margin-top: 20rpx;
 }

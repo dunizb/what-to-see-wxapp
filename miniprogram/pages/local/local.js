@@ -1,4 +1,3 @@
-import common from '../../scripts/common.js'
 import QQMapWX from '../../scripts/qqmap-wx-jssdk.min.js'
 
 let qqmapsdk;
@@ -9,11 +8,11 @@ Page({
    */
   data: {
     selectedMusicConcert: true,
-    selectedMusicFestival: false,
+    selectedSings: false,
     selectedDisplay: false,
-    dataList: [],
+    dataList: null,
     showPagerLoaidng: false,
-    city: '',
+    city: '上海',
     category: '音乐会',
     pager: {
       pageSize: 30,
@@ -22,7 +21,6 @@ Page({
     },
     gonep: false
   },
-  ...common.methods,
 
   /**
    * 生命周期函数--监听页面加载
@@ -48,12 +46,32 @@ Page({
         },
         fail(err) {
           console.log(err)
-          wx.showToast('获取城市失败')
+          wx.showToast({
+            title: '获取城市失败',
+            icon: 'none'
+          })
         },
         complete() {
 
         }
       })
+    })
+    
+    this.setBar()
+   
+  },
+
+  setBar() {
+    const city = wx.getStorage({
+      key: 'loca_city',
+      success: function (res) {
+        console.log(res)
+        wx.setNavigationBarTitle({ title: `本地好看·${res.data}` })
+        wx.setTabBarItem({
+          index: 2,
+          text: `${res.data}好看`
+        })
+      },
     })
   },
 
@@ -73,34 +91,31 @@ Page({
             }
           })
         } else {
-          this.loadLocaData()
+          this.loadData()
         }
       }
     })
   },
 
-  handleClick(event) {
-    const { category, pager } = this.data
-    if (event) {
-      if (category !== event.currentTarget.id) {
-        this.data.dataList = []
-      }
-      category = event.currentTarget.id
+  handleClick({ currentTarget: {id} }) {
+    const category = this.data.category
+    if (category !== id) {
+      this.data.dataList = null
+    }
+    if (id === 'musicConcert') {
+      this.data.category = '音乐会'
+    } else if (id === 'sings') {
+      this.data.category = '演唱会'
+    } else {
+      this.data.category = '展览休闲'
     }
     this.setData({
-      selectedMusicConcert: category === 'musicConcert',
-      selectedMusicFestival: category === 'musicFestival',
-      selectedDisplay: category === 'display',
-      category
+      selectedMusicConcert: id === 'musicConcert',
+      selectedSings: id === 'sings',
+      selectedDisplay: id === 'display'
     })
+    
     this.loadData()
-  },
-
-  loadLocaData() {
-    console.log('loadLocaData')
-    this.setData({
-      dataList: wx.getStorageSync('datalist')
-    })
   },
 
   loadData() {
@@ -117,14 +132,16 @@ Page({
     }).then(res => {
       console.log('res', res)
       const result = res.result
-      this.data.pager.totalPage = res.totalPage
+      this.data.pager.totalPage = result.totalPage
+      let dataList = this.data.dataList || []
+      dataList = dataList.concat(result.list)
       this.setData({
-        dataList: result.list
+        dataList
       }, () => {
         wx.hideLoading()
         wx.setStorage({
           key: 'datalist',
-          data: result.list,
+          data: dataList,
         })
       })
       wx.hideLoading()
@@ -171,10 +188,14 @@ Page({
    */
   onPullDownRefresh: function () {
     const { pager, dataList } = this.data
-    pager.currPage = 0
+    pager.currPage = 1
     this.setData({
       showPagerLoaidng: true,
-      dataList: []
+      dataList: null
+    })
+    wx.setStorage({
+      key: 'datalist',
+      data: null,
     })
     this.loadData();
   },
@@ -184,9 +205,13 @@ Page({
    */
   onReachBottom: function () {
     const { pager, dataList } = this.data
-    pager.currPage = dataList.length + 1
-    this.setData({ showPagerLoaidng: true })
-    this.loadData();
+    if (pager.currPage < pager.totalPage) {
+      pager.currPage++
+      this.setData({ showPagerLoaidng: true })
+      this.loadData()
+    } else {
+      this.setData({ gonep: true })
+    }
   },
 
   /**

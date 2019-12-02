@@ -1,7 +1,9 @@
 {
   "usingComponents": {
     "van-tag": "@vant/weapp/tag",
-    "van-loading": "@vant/weapp/loading"
+    "van-loading": "@vant/weapp/loading",
+    "text-elli": "../../../components/text-ellipsis",
+    "van-icon": "@vant/weapp/icon"
   },
   "navigationBarBackgroundColor": "#d81e06",
   "navigationBarTextStyle": "white",

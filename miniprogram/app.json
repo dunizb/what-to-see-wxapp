@@ -1,20 +1,14 @@
 {
   "pages": [
-    "pages/local/local",
     "pages/movie/movie",
     "pages/tv/tv",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/local/local"
   ],
   "tabBar": {
     "color": "#000000",
     "selectedColor": "#d81e06",
     "list": [
-      {
-        "pagePath": "pages/local/local",
-        "text": "本地好看",
-        "iconPath": "images/local.png",
-        "selectedIconPath": "images/local-selected.png"
-      },
       {
         "pagePath": "pages/movie/movie",
         "text": "电影",
@@ -26,6 +20,12 @@
         "text": "电视",
         "iconPath": "images/tv.png",
         "selectedIconPath": "images/tv-selected.png"
+      },
+      {
+        "pagePath": "pages/local/local",
+        "text": "本地好看",
+        "iconPath": "images/local.png",
+        "selectedIconPath": "images/local-selected.png"
       }
     ]
   },

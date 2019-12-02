@@ -1,8 +1,8 @@
 <view class="container">
   <view class="category">
     <view class="cate-button music-concert {{selectedMusicConcert?'selected':''}}" id="musicConcert" bind:tap="handleClick">音乐会</view>
-    <view class="cate-button music-festival {{selectedMusicFestival?'selected':''}}" id="musicFestival" bind:tap="handleClick">音乐节</view>
-    <view class="cate-button display {{selectedDisplay?'selected':''}}" id="display" bind:tap="handleClick">展览</view>
+    <view class="cate-button sings {{selectedSings?'selected':''}}" id="sings" bind:tap="handleClick">演唱会</view>
+    <view class="cate-button display {{selectedDisplay?'selected':''}}" id="display" bind:tap="handleClick">展览休闲</view>
   </view>
 
   <view class="list-conrainer" style="padding-top:100rpx">
@@ -10,8 +10,17 @@
       <view class="cover-wrapper">
         <image class="cover" src="{{item.verticalPic}}" mode="aspectFill" lazy-load="{{true}}"></image>
       </view>
-      <view class="title">
-        <view> {{item.title}}</view>
+      <view class="infos">
+        <text-elli clamp="{{2}}" custom-class="title-elli">{{item.name}}</text-elli>
+        <view style="margin-bottom:20rpx;">
+          <view class="other"><van-icon name="calender-o" color="#d81e06" /> 时间：{{item.showtime}}</view>
+          <view class="other"><text-elli clamp="{{2}}"><van-icon name="location-o" color="#d81e06" /> 地点：{{item.venue}}</text-elli>
+          </view>
+        </view>
+        <view>
+          <van-tag mark size="large" type="success">{{item.showstatus}}</van-tag>
+        </view>
+        <view class="price">￥{{item.price_str}}</view>
       </view>
     </view>
   </view>
