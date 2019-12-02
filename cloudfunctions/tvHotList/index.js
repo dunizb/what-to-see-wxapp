@@ -6,13 +6,13 @@ cloud.init()
 var rp = require('request-promise');
 const type = 'tv'
 const tag = encodeURI('热门')
-const limit = 50
-const start = 0
 
 // 云函数入口函数
 exports.main = async (event, context) => {
+  console.log('start ==>', event.start)
+  console.log('limit ==>', event.limit)
   const options = {
-    uri: `https://movie.douban.com/j/search_subjects?type=${type}&tag=${tag}&page_limit=${limit}&page_start=${start}`,
+    uri: `https://movie.douban.com/j/search_subjects?type=${type}&tag=${tag}&page_limit=${event.limit}&page_start=${event.start}`,
     headers: {
       'Host': 'movie.douban.com',
       'Referer': 'https://movie.douban.com/'

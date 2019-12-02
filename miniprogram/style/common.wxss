@@ -18,6 +18,19 @@
   justify-content: flex-start;
   flex-wrap: wrap;
 }
+.list-item .cover-wrapper {
+  position: relative;
+  font-size: 0;
+}
+.list-item .cover-wrapper .rate {
+  position: absolute;
+  top:0;
+  right: 0;
+  color: #fff;
+  font-size: 20rpx;
+  background-color: #d81e06;
+  padding: 0 6rpx;
+}
 .list-item {
   text-align: center; 
   width: 233rpx;
@@ -28,9 +41,19 @@
   height: 324rpx;
 }
 .list-item .title {
-  margin: 10rpx 0 0;
   height: 88rpx;
   overflow: hidden;
   font-size: 28rpx;
   padding: 0 4rpx;
+}
+
+.page-loading-tip {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+.page-loading-tip .gonep {
+  color: #ccc;
+  font-size: 26rpx;
 }

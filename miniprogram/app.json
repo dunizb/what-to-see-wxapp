@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/local/local",
     "pages/movie/movie",
     "pages/tv/tv",
     "pages/detail/detail"
@@ -8,6 +9,12 @@
     "color": "#000000",
     "selectedColor": "#d81e06",
     "list": [
+      {
+        "pagePath": "pages/local/local",
+        "text": "本地好看",
+        "iconPath": "images/local.png",
+        "selectedIconPath": "images/local-selected.png"
+      },
       {
         "pagePath": "pages/movie/movie",
         "text": "电影",
@@ -21,6 +28,15 @@
         "selectedIconPath": "images/tv-selected.png"
       }
     ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
   },
   "sitemapLocation": "sitemap.json",
   "style": "v2"

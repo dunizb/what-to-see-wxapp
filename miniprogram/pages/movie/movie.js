@@ -1,4 +1,4 @@
-import common from '../common.js'
+import common from '../../scripts/common.js'
 Page({
 
   /**
@@ -78,7 +78,6 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
   },
 
   /**

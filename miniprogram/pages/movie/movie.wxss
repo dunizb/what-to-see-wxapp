@@ -16,6 +16,3 @@
   background: #07c160;
   color: #fff;
 }
-.list-item .score {
-  color: #e09015;
-}

@@ -20,8 +20,3 @@
   background: #1296db;
   color: #fff;
 }
-
-
-.list-item .score {
-  color: #e09015;
-}

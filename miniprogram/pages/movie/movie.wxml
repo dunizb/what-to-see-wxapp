@@ -1,16 +1,18 @@
 <view class="container">
   <view class="category">
-    <view class="cate-button hot {{selectedHot?'selected':''}}" id="movielist" bind:tap="getList">最近热门 Top50</view>
+    <view class="cate-button hot {{selectedHot?'selected':''}}" id="movieHotList" bind:tap="getList">最近热门 Top50</view>
     <view class="cate-button new {{selectedNew?'selected':''}}" id="movieNewList" bind:tap="getList">最新 Top50</view>
   </view>
 
   <view class="list-conrainer" style="padding-top:100rpx">
     <view class="list-item" wx:for="{{dataList}}" wx:key="id" id="{{item.id}}" bind:tap="getDetail">
-      <image class="cover" src="{{item.cover}}" mode="aspectFill" lazy-load="{{true}}"></image>
-      <view class="desc">
+      <view class="cover-wrapper">
+        <image class="cover" src="{{item.cover}}" mode="aspectFill" lazy-load="{{true}}"></image>
+        <text class="rate">{{item.rate}}</text>
+      </view>
+      <view class="title">
         <van-tag type="primary" wx:if="{{item.is_new}}">新</van-tag>
-        <text class="title">{{item.title}}</text>
-        <text class="score">8.8</text>
+        <text> {{item.title}}</text>
       </view>
     </view>
   </view>

@@ -5,6 +5,7 @@
   "navigationBarBackgroundColor": "#07c160",
   "navigationBarTextStyle": "white",
   "navigationBarTitleText": "好看电影",
-  "backgroundColor": "#000000",
-  "backgroundTextStyle": "light"
+  "backgroundColor": "#fff",
+  "backgroundTextStyle": "dark",
+  "enablePullDownRefresh": false
 }

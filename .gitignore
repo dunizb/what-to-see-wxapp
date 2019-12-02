@@ -2,4 +2,4 @@
 .vscode
 .project
 cloudfunctions/**/node_modules
-miniprogram/node_modules
+miniprogram/miniprogram_npm/node_modules

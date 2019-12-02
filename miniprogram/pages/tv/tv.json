@@ -1,10 +1,12 @@
 {
   "usingComponents": {
-    "van-tag": "@vant/weapp/tag"
+    "van-tag": "@vant/weapp/tag",
+    "van-loading": "@vant/weapp/loading"
   },
   "navigationBarBackgroundColor": "#1296db",
   "navigationBarTextStyle": "white",
   "navigationBarTitleText": "好看电视",
-  "backgroundColor": "#000000",
-  "backgroundTextStyle": "light"
+  "backgroundColor": "#fff",
+  "backgroundTextStyle": "dark",
+  "enablePullDownRefresh": true
 }

@@ -1,4 +1,4 @@
-import common from '../common.js'
+import common from '../../scripts/common.js'
 Page({
 
   /**
@@ -8,7 +8,14 @@ Page({
     selectedHot: true,
     selectedZongYi: false,
     selectedJiLu: false,
-    dataList: []
+    currentFunction: 'tvHotList',
+    dataList: [],
+    showPagerLoaidng: false,
+    pager: {
+      start: 0,
+      limit: 50
+    },
+    gonep: false
   },
   ...common.methods,
 
@@ -19,26 +26,42 @@ Page({
     this.getList()
   },
   getList(event) {
-    let callFunction = 'tvHotList'
+    let currentFunction = this.data.currentFunction
+    const { start, limit } = this.data.pager
     if(event) {
-      callFunction = event.currentTarget.id
+      if (currentFunction !== event.currentTarget.id) {
+        this.data.dataList = []
+      }
+      currentFunction = event.currentTarget.id
     }
     this.setData({
-      selectedHot: callFunction === 'tvHotList',
-      selectedJiLu: callFunction === 'tvJiLuList',
-      selectedZongYi: callFunction === 'tvZongYiList'
+      selectedHot: currentFunction === 'tvHotList',
+      selectedJiLu: currentFunction === 'tvJiLuList',
+      selectedZongYi: currentFunction === 'tvZongYiList',
+      currentFunction
     })
+    this.loadData(currentFunction, start, limit)
+  },
+  loadData(currentFunction, start, limit) {
     wx.showLoading({ title: '加载中' })
     wx.cloud.callFunction({
-      name: callFunction
+      name: currentFunction,
+      data: { start, limit }
     }).then(res => {
-      // console.log('res', res.result)
       const result = res.result
-      this.setData({
-        dataList: result.subjects
-      }, () => {
+      if (start > 0 && result.subjects.length == 0) {
+        this.setData({ gonep: true })
         wx.hideLoading()
-      })
+      } else {
+        this.data.dataList = this.data.dataList.concat(result.subjects)
+        this.setData({
+          dataList: this.data.dataList,
+          showPagerLoaidng: false
+        }, () => {
+          wx.hideLoading()
+          wx.stopPullDownRefresh()
+        })
+      }
     }).catch(err => {
       console.log(err)
       wx.showToast({
@@ -81,14 +104,23 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    const { pager, dataList } = this.data
+    pager.start = 0
+    this.setData({ 
+      showPagerLoaidng: true,
+      dataList: [] 
+    })
+    this.getList();
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    const { pager, dataList } = this.data
+    pager.start = dataList.length + 1
+    this.setData({ showPagerLoaidng: true })
+    this.getList();
   },
 
   /**
