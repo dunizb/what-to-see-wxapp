@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+    "van-tag": "@vant/weapp/tag",
+    "van-loading": "@vant/weapp/loading"
+  },
+  "navigationBarBackgroundColor": "#d81e06",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "本地好看",
+  "backgroundColor": "#fff",
+  "backgroundTextStyle": "dark",
+  "enablePullDownRefresh": true
+}

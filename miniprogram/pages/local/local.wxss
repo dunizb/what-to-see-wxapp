@@ -1,0 +1,34 @@
+.category .cate-button {
+  background: #fff;
+  color: #d81e06;
+  padding: 8rpx 0;
+  text-align: center;
+  min-width: 200rpx;
+  border: 1rpx solid #d81e06;
+}
+.category .cate-button.music-concert {
+  border-radius: 6rpx 0 0 6rpx;
+}
+.category .cate-button.music-festival {
+  border-left-width: 0;
+  border-right-width: 0;
+}
+.category .cate-button.display {
+  border-radius: 0 6rpx 6rpx 0;
+}
+.category .cate-button.selected {
+  background: #d81e06;
+  color: #fff;
+}
+
+.item-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+.item-wrapper .cover-wrapper .cover{
+  width: 280rpx;
+  height: 380rpx;
+}
+.item-wrapper .title {
+  text-align: left;
+}

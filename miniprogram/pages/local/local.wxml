@@ -1,0 +1,24 @@
+<view class="container">
+  <view class="category">
+    <view class="cate-button music-concert {{selectedMusicConcert?'selected':''}}" id="musicConcert" bind:tap="handleClick">音乐会</view>
+    <view class="cate-button music-festival {{selectedMusicFestival?'selected':''}}" id="musicFestival" bind:tap="handleClick">音乐节</view>
+    <view class="cate-button display {{selectedDisplay?'selected':''}}" id="display" bind:tap="handleClick">展览</view>
+  </view>
+
+  <view class="list-conrainer" style="padding-top:100rpx">
+    <view class="item-wrapper" wx:for="{{dataList}}" wx:key="id" id="{{item.id}}" bind:tap="getDetail">
+      <view class="cover-wrapper">
+        <image class="cover" src="{{item.verticalPic}}" mode="aspectFill" lazy-load="{{true}}"></image>
+      </view>
+      <view class="title">
+        <view> {{item.title}}</view>
+      </view>
+    </view>
+  </view>
+  <view class="page-loading-tip">
+    <van-loading type="spinner" size="16px" wx:if="{{showPagerLoaidng}}">
+      拼了命的加载中...
+    </van-loading>  
+    <text class="gonep" wx:if="{{gonep}}">到底了，没有了！</text>
+  </view>
+</view>
