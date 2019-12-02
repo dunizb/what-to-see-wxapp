@@ -1,0 +1,12 @@
+.pps-text-ellipsis {
+  word-break: break-all;
+  overflow: hidden;
+  display: block;
+  white-space: nowrap;
+  text-overflow:ellipsis;
+}
+.pps-text-ellipsis-multi-line {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

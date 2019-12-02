@@ -1,0 +1,6 @@
+<view class="pps-text-ellipsis custom-class" wx:if="{{clamp === 1}}">
+  <slot></slot>
+</view>
+<view class="pps-text-ellipsis-multi-line custom-class" wx:else style="-webkit-line-clamp:{{clamp}}">
+  <slot></slot>
+</view>
