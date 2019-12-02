@@ -18,7 +18,7 @@
           </view>
         </view>
         <view>
-          <van-tag mark size="large" type="success">{{item.showstatus}}</van-tag>
+          <van-tag mark size="medium" type="success">{{item.showstatus}}</van-tag>
         </view>
         <view class="price">￥{{item.price_str}}</view>
       </view>
