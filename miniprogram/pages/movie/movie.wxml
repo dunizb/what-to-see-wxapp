@@ -1,8 +1,10 @@
 <view class="container">
-  <view class="category">
-    <view class="cate-button hot {{selectedHot?'selected':''}}" id="movieHotList" bind:tap="getList">最近热门 Top50</view>
-    <view class="cate-button new {{selectedNew?'selected':''}}" id="movieNewList" bind:tap="getList">最新 Top50</view>
-  </view>
+  <van-transition name="fade-up" duration="500">
+    <view class="category">
+      <view class="cate-button hot {{selectedHot?'selected':''}}" id="hot" bind:tap="onTag">最近热门 Top50</view>
+      <view class="cate-button new {{selectedNew?'selected':''}}" id="new" bind:tap="onTag">最新 Top50</view>
+    </view>
+  </van-transition>
 
   <view class="list-conrainer" style="padding-top:100rpx">
     <view class="list-item" wx:for="{{dataList}}" wx:key="id" id="{{item.id}}" bind:tap="getDetail">

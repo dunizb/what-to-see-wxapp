@@ -7,7 +7,9 @@ Page({
   data: {
     selectedHot: true,
     selectedNew: false,
-    dataList: []
+    dataList: [],
+    id: 'hot',
+    type: 'movie'
   },
   ...common.methods,
 
@@ -15,22 +17,30 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getList()
+    this.loadData()
   },
-  getList(event) {
-    let callFunction = 'movielist'
-    if(event) {
-      callFunction = event.currentTarget.id
+  onTag({ currentTarget: {id} }) {
+    if (this.data.id !== id || this.data.type == 'tv') {
+      this.data.dataList = []
     }
+    this.data.id = id
+    this.loadData()
+  },
+  loadData() {
+    let {id, type} = this.data
     this.setData({
-      selectedHot: callFunction === 'movielist',
-      selectedNew: callFunction === 'movieNewList'
+      selectedHot: id === 'hot',
+      selectedNew: id === 'new'
     })
     wx.showLoading({ title: '加载中' })
     wx.cloud.callFunction({
-      name: callFunction
+      name: 'douban',
+      data: {
+        $url: 'list',
+        type,
+        tag: id == 'hot' ? '热门' : '最新'
+      }
     }).then(res => {
-      // console.log('res', res.result)
       const result = res.result
       this.setData({ 
         dataList: result.subjects 

@@ -8,7 +8,10 @@ Page({
     selectedHot: true,
     selectedZongYi: false,
     selectedJiLu: false,
-    currentFunction: 'tvHotList',
+    id: 'hot',
+    tag: '热门',
+    type: 'tv',
+    isLoadMore: false,
     dataList: [],
     showPagerLoaidng: false,
     pager: {
@@ -23,33 +26,57 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getList()
+    this.loadData()
   },
-  getList(event) {
-    let currentFunction = this.data.currentFunction
-    const { start, limit } = this.data.pager
-    if(event) {
-      if (currentFunction !== event.currentTarget.id) {
-        this.data.dataList = []
-      }
-      currentFunction = event.currentTarget.id
+  onTag({ currentTarget: { id } }) {
+    if (this.data.id !== id || this.data.type == 'movie') {
+      this.data.dataList = []
+      this.data.isLoadMore = false
     }
+    this.data.id = id
+    const { start, limit } = this.data.pager
+
+    let tag = this.data.tag
+    switch (id) {
+      case 'hot':
+        tag = '热门';
+        break;
+      case 'jilu':
+        tag = '纪录片';
+        break;
+      case 'zongyi':
+        tag = '综艺';
+        break;
+      default:
+        console.log('why？')
+        break;
+    }
+    this.data.tag = tag
     this.setData({
-      selectedHot: currentFunction === 'tvHotList',
-      selectedJiLu: currentFunction === 'tvJiLuList',
-      selectedZongYi: currentFunction === 'tvZongYiList',
-      currentFunction
+      selectedHot: id === 'hot',
+      selectedJiLu: id === 'jilu',
+      selectedZongYi: id === 'zongyi'
     })
-    this.loadData(currentFunction, start, limit)
+    this.loadData()
   },
-  loadData(currentFunction, start, limit) {
-    wx.showLoading({ title: '加载中' })
+
+  loadData() {
+    const { type, tag, isLoadMore, pager } = this.data
+    if (!isLoadMore) {
+      wx.showLoading({ title: '加载中' })
+    }
     wx.cloud.callFunction({
-      name: currentFunction,
-      data: { start, limit }
+      name: 'douban',
+      data: { 
+        $url: 'list',
+        type,
+        tag,
+        start: pager.start, 
+        limit: pager.limit 
+      }
     }).then(res => {
       const result = res.result
-      if (start > 0 && result.subjects.length == 0) {
+      if (pager.start > 0 && result.subjects.length == 0) {
         this.setData({ gonep: true })
         wx.hideLoading()
       } else {
@@ -106,11 +133,12 @@ Page({
   onPullDownRefresh: function () {
     const { pager, dataList } = this.data
     pager.start = 0
+    this.data.isLoadMore = false
     this.setData({ 
       showPagerLoaidng: true,
       dataList: [] 
     })
-    this.getList();
+    this.loadData();
   },
 
   /**
@@ -119,8 +147,9 @@ Page({
   onReachBottom: function () {
     const { pager, dataList } = this.data
     pager.start = dataList.length + 1
+    this.data.isLoadMore = true
     this.setData({ showPagerLoaidng: true })
-    this.getList();
+    this.loadData();
   },
 
   /**

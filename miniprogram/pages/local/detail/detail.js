@@ -1,41 +1,39 @@
-// miniprogram/pages/detail/detail.js
+// miniprogram/pages/local/detail/detail.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    info: null,
-    cover: '',
+    detail: null,
+    name: '',
     loading: true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    const { id } = options
-    this.getDetail(id)
-    this.setData({ 
-      cover: wx.getStorageSync('cover')
-    })
+  onLoad: function ({ id, name }) {
+    console.log(id, name)
+    this.setData({ name })
+    this.loadData(id, name)
   },
-  getDetail(id) {
+
+  loadData(id, name) {
     wx.showLoading({ title: '加载中' })
     wx.cloud.callFunction({
-      name: 'douban',
-      data: { 
+      name: 'damai',
+      data: {
         $url: 'detail',
-        id 
+        id,
+        name
       }
     }).then(res => {
-      console.log('res', res.result)
-      const result = res.result
+      console.log('res', res)
       this.setData({
-        info: result.subject,
+        detail: res,
         loading: false
       }, () => {
-        this.updateNavigationBar(result.subject.title)
         wx.hideLoading()
       })
     }).catch(err => {
@@ -46,13 +44,6 @@ Page({
       })
       wx.hideLoading()
     })
-  }, 
-  updateNavigationBar(title) {
-    wx.setNavigationBarTitle({ title })
-  },
-
-  onBack() {
-    wx.navigateBack()
   },
 
   /**

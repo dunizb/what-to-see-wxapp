@@ -20,7 +20,7 @@ Page({
       currPage: 1,
       totalPage: 0
     },
-    gonep: false
+    gonep: false // 分页数据到底了
   },
 
   /**
@@ -43,7 +43,7 @@ Page({
           }
           this.data.city = city
           wx.setStorageSync('loca_city', city)
-          this.loadData()
+          this.loadDataList()
         },
         fail(err) {
           console.log(err)
@@ -66,7 +66,6 @@ Page({
     const city = wx.getStorage({
       key: 'loca_city',
       success: function (res) {
-        console.log(res)
         wx.setNavigationBarTitle({ title: `本地好看·${res.data}` })
         wx.setTabBarItem({
           index: 2,
@@ -92,7 +91,7 @@ Page({
             }
           })
         } else {
-          this.loadData()
+          this.loadDataList()
         }
       }
     })
@@ -116,15 +115,16 @@ Page({
       selectedDisplay: id === 'display'
     })
     
-    this.loadData()
+    this.loadDataList()
   },
 
-  loadData() {
+  loadDataList() {
     wx.showLoading({ title: '加载中' })
     const { city, category, pager } = this.data
     wx.cloud.callFunction({
       name: 'damai',
       data: {
+        $url: 'list',
         city,
         category,
         pageSize: pager.pageSize,
@@ -133,27 +133,20 @@ Page({
     }).then(res => {
       console.log('res', res)
       const result = res.result
-      this.data.pager.totalPage = result.totalPage
-      let dataList = this.data.dataList || []
-      dataList = dataList.concat(result.list)
-      if (dataList.length > 0) {
+      if (result) {
+        this.data.pager.totalPage = result.totalPage
+        let dataList = this.data.dataList || []
         dataList = dataList.concat(result.list)
-      } else {
-        this.data.cityNull = true
-      }
-      this.setData({
-        dataList,
-        city: this.data.city,
-        category: this.data.category,
-        cityNull: this.data.cityNull
-      }, () => {
-        wx.hideLoading()
-        wx.setStorage({
-          key: 'datalist',
-          data: dataList,
+        this.setData({
+          dataList,
+          city: this.data.city,
+          category: this.data.category
+        }, () => {
+          wx.hideLoading()
         })
-      })
-      
+      } else {
+        this.setData({ cityNull: true })
+      }
       wx.hideLoading()
     }).catch(err => {
       console.log(err)
@@ -162,6 +155,13 @@ Page({
         icon: 'none'
       })
       wx.hideLoading()
+    })
+  },
+
+  showDetail({ currentTarget: {id} }) {
+    const item = this.data.dataList.find(v => v.projectid == id)
+    wx.navigateTo({
+      url: `./detail/detail?id=${id}&name=${item.name}`
     })
   },
 
@@ -207,7 +207,7 @@ Page({
       key: 'datalist',
       data: null,
     })
-    this.loadData();
+    this.loadDataList();
   },
 
   /**
@@ -218,7 +218,7 @@ Page({
     if (pager.currPage < pager.totalPage) {
       pager.currPage++
       this.setData({ showPagerLoaidng: true })
-      this.loadData()
+      this.loadDataList()
     } else {
       this.setData({ gonep: true })
     }

@@ -27,6 +27,7 @@
 	"libVersion": "2.9.4",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
+	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -61,6 +62,13 @@
 					"name": "详情",
 					"pathName": "pages/detail/detail",
 					"query": "id=27119724",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "本地好看",
+					"pathName": "pages/local/local",
+					"query": "",
 					"scene": null
 				}
 			]

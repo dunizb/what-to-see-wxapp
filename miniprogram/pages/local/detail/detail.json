@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "van-skeleton": "@vant/weapp/skeleton"
+  },
+  "navigationBarBackgroundColor": "#d81e06",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "活动详情",
+  "backgroundColor": "#fff",
+  "backgroundTextStyle": "dark"
+}

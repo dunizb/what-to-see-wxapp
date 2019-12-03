@@ -1,0 +1,6 @@
+<view class="container">
+  <van-skeleton title avatar avatar-size="128px" row="{{4}}" avatar-shape="square" loading="{{loading}}" style="margin-top:40rpx;">
+    <view class="name">{{name}}</view>
+    <rich-text>{{detail}}</rich-text>
+  </van-skeleton>
+</view>

@@ -1,12 +1,14 @@
 <view class="container">
-  <view class="category">
-    <view class="cate-button music-concert {{selectedMusicConcert?'selected':''}}" id="musicConcert" bind:tap="handleClick">音乐会</view>
-    <view class="cate-button sings {{selectedSings?'selected':''}}" id="sings" bind:tap="handleClick">演唱会</view>
-    <view class="cate-button display {{selectedDisplay?'selected':''}}" id="display" bind:tap="handleClick">展览休闲</view>
-  </view>
+  <van-transition name="fade-up" duration="500">
+    <view class="category">
+      <view class="cate-button music-concert {{selectedMusicConcert?'selected':''}}" id="musicConcert" bind:tap="handleClick">音乐会</view>
+      <view class="cate-button sings {{selectedSings?'selected':''}}" id="sings" bind:tap="handleClick">演唱会</view>
+      <view class="cate-button display {{selectedDisplay?'selected':''}}" id="display" bind:tap="handleClick">展览休闲</view>
+    </view>
+  </van-transition>
 
   <view class="list-conrainer" style="padding-top:100rpx">
-    <view class="item-wrapper" wx:if="{{dataList.length > 0}}" wx:for="{{dataList}}" wx:key="id" id="{{item.id}}" bind:tap="getDetail">
+    <view class="item-wrapper" wx:if="{{dataList.length > 0}}" wx:for="{{dataList}}" wx:key="id" id="{{item.projectid}}">
       <view class="cover-wrapper">
         <image class="cover" src="{{item.verticalPic}}" mode="aspectFill" lazy-load="{{true}}"></image>
       </view>

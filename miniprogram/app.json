@@ -3,7 +3,8 @@
     "pages/movie/movie",
     "pages/tv/tv",
     "pages/detail/detail",
-    "pages/local/local"
+    "pages/local/local",
+    "pages/local/detail/detail"
   ],
   "tabBar": {
     "color": "#000000",

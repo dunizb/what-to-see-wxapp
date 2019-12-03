@@ -3,7 +3,8 @@
     "van-tag": "@vant/weapp/tag",
     "van-loading": "@vant/weapp/loading",
     "text-elli": "../../../components/text-ellipsis",
-    "van-icon": "@vant/weapp/icon"
+    "van-icon": "@vant/weapp/icon",
+    "van-transition": "@vant/weapp/transition"
   },
   "navigationBarBackgroundColor": "#d81e06",
   "navigationBarTextStyle": "white",
