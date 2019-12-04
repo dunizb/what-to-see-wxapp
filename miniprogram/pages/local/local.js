@@ -12,7 +12,7 @@ Page({
     selectedDisplay: false,
     dataList: null,
     showPagerLoaidng: false,
-    city: '上海',
+    city: '',
     category: '音乐会',
     cityNull: false,
     pager: {
@@ -44,6 +44,7 @@ Page({
           this.data.city = city
           wx.setStorageSync('loca_city', city)
           this.loadDataList()
+          this.setBar()
         },
         fail(err) {
           console.log(err)
@@ -53,19 +54,17 @@ Page({
           })
         },
         complete() {
-
         }
       })
     })
-    
-    this.setBar()
-   
   },
 
   setBar() {
     const city = wx.getStorage({
       key: 'loca_city',
-      success: function (res) {
+      success: res => {
+        this.data.city = res.data
+        this.loadDataList()
         wx.setNavigationBarTitle({ title: `本地好看·${res.data}` })
         wx.setTabBarItem({
           index: 2,
@@ -91,7 +90,7 @@ Page({
             }
           })
         } else {
-          this.loadDataList()
+          this.setBar()
         }
       }
     })
