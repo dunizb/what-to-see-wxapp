@@ -10,7 +10,7 @@
 ## 界面
 |电影|电视|本地活动|详情|
 |:-----:|:-------:|:-------:|:-------:|
-|![kiBxAc.jpg](https://t1.picb.cc/uploads/2019/12/04/kiBxAc.jpg)|![kiBTBK.jpg](https://t1.picb.cc/uploads/2019/12/04/kiBTBK.jpg)|![kiBRwj.jpg](https://t1.picb.cc/uploads/2019/12/04/kiBRwj.jpg)|![kiBFLy.jpg](https://t1.picb.cc/uploads/2019/12/04/kiBFLy.jpg)|
+|![](https://ftp.bmp.ovh/imgs/2019/12/e909c3020c3dbf35.jpg)||||
 
 ## TODO
 - [ ] 详情页增加演职员内容等、美化等
