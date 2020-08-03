@@ -20,7 +20,8 @@
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
-		}
+		},
+		"useCompilerModule": true
 	},
 	"appid": "wx2572459ca8cc88c7",
 	"projectname": "what-to-see-wxapp",
